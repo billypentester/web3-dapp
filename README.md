@@ -9,6 +9,7 @@ It's a decenteralized web3 based application which changes the status of ownersh
 - solidity (contract creation)
 - web3 JS (api calls between blockchain and node JS)
 - hardhat (contract compilation, testing, deployment)
+- metamask wallet (signing transactions)
 
 # Installation
 
