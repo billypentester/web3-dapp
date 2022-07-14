@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+        <a class="navbar-brand" href="#">Decenterlized Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active p-1">
+                    <button class="nav-link btn btn-outline-primary text-white" onclick="connect()">
+                        <i class="fas fa-wallet text-primary mx-1"></i>  
+                        <span class="mx-1">Connect MetaMask Wallet</span>
+                    </button> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        
+        <h3 class="text-center my-4">Ownership</h3>
+
+        {{#if address }}
+        
+        <diV class="d-flex justify-content-center align-items-center rounded-3 bg-light p-3 my-5">
+            <h5 class="mx-2 my-0">wallet address : </h5>
+            <h4 class="mx-2 my-0 text-success">{{address}}</h4>
+        </diV>
+
+        {{/if}}
+
+        <div class="d-flex justify-content-center">
+            <div class="col-5">
+                <form action="/update" method="POST">
+                    <div class="form-outline">
+                        <input type="text" name="fname" class="form-control" />
+                        <label class="form-label" for="form12">Full Name</label>
+                        {{#if address}}
+                            <input type="hidden" name="address" value={{address}} />
+                        {{else}}
+                            <input type="hidden" name="address" value="" />
+                        {{/if}}
+                    </div>
+                    <input type="submit" class="btn btn-primary my-5 text-center mx-auto d-flex ">
+                </form>
+                <div class="d-flex justify-content-center align-items-center bg-light p-2 rounded-3">
+                    <h4 class="m-1">Owner is : </h4>
+                    <h2 id="msg" class="text-danger m-1"> {{candidate}} </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        async function connect() 
+        {
+            if (window.ethereum) {
+                await window.ethereum.request({ method: "eth_requestAccounts" });
+                window.web3 = new Web3(window.ethereum);
+                const account = web3.eth.accounts;
+                const walletAddress = account.givenProvider.selectedAddress;
+                console.log(`Wallet: ${walletAddress}`);
+                window.location.href = `/setup?wallet=${walletAddress}`;
+            } 
+            else {
+                alert("MetaMask is not installed");
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+    
+</body>
+</html>

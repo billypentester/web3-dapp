@@ -1,0 +1,49 @@
+{
+  "version": "3.2",
+  "log": [
+    {
+      "Election": {
+        "src": "Contracts\\Election.sol:4",
+        "version": {
+          "withMetadata": "e71b702936b414fbddf11bd54059e9a63e408ce996b26a1c13093d7bed706833",
+          "withoutMetadata": "b8e4c24fa2e6ef8cc4be33b99bb1c4efe86fd86fa6917d2b95a694e476ebe865",
+          "linkedWithoutMetadata": "b8e4c24fa2e6ef8cc4be33b99bb1c4efe86fd86fa6917d2b95a694e476ebe865"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "()",
+          "setCandidate(string)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Election",
+            "src": "Contracts\\Election.sol:7"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "candidateName",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_string_storage",
+              "contract": "Election",
+              "src": "Contracts\\Election.sol:5"
+            }
+          ],
+          "types": {
+            "t_string_storage": {
+              "label": "string",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.1",
+          "flat": true
+        }
+      }
+    }
+  ]
+}
